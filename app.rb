@@ -5,15 +5,12 @@
 
 require 'rest-client'
 require 'colorize'
+require 'yaml'
 
 class App
     def main
-        urls = [
-            'http://reddit-stream.com/',
-            'http://reddit-stream.com/error/raise'
-        ]
-
-        urls.each do |url|
+        data_file_name = 'sites.yaml' 
+        YAML.load_file(data_file_name).each do |url|
             response = get_response(url)
             code = response.ok? ? response.code.to_s.green : response.code.to_s.red
             puts "[#{code}] #{url}"
