@@ -16,7 +16,7 @@ class App
                 code = response.ok? ? response.code.to_s.green : response.code.to_s.red
                 final_url = response.request.url
                 text = "[#{code}] #{final_url}"
-                text += " (#{url.yellow})" unless final_url.include?(url)
+                text += " (requested #{url})".yellow unless final_url.include?(url)
                 puts text
             rescue StandardError => e
                 puts "[#{"---".red}] #{url} (#{e.to_s.red})"
