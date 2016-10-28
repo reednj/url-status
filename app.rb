@@ -11,17 +11,26 @@ class App
     def main
         data_file_name = 'sites.yaml' 
         YAML.load_file(data_file_name).each do |url|
-            response = get_response(url)
-            code = response.ok? ? response.code.to_s.green : response.code.to_s.red
-            puts "[#{code}] #{url}"
+            begin
+                response = get_response(url)
+                code = response.ok? ? response.code.to_s.green : response.code.to_s.red
+                final_url = response.request.url
+                text = "[#{code}] #{final_url}"
+                text += " (#{url.yellow})" unless final_url.include?(url)
+                puts text
+            rescue StandardError => e
+                puts "[#{"---".red}] #{url} (#{e.to_s.red})"
+            end
         end
     end
 
     def get_response(url)
+        url = 'http://' + url unless url.start_with? 'http'
+
         begin
-            result = RestClient.get(url)
+            return RestClient.get(url)
         rescue RestClient::ExceptionWithResponse => e
-            result = e.response
+            return e.response
         end
     end
 end
