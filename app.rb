@@ -6,6 +6,7 @@
 require 'rest-client'
 require 'colorize'
 require 'yaml'
+require 'trollop'
 
 class App
     def main
@@ -24,8 +25,13 @@ class App
     end
 
     def url_list
+        opts = Trollop::options do
+			version "url-status (c) 2016 @reednj (reednj@gmail.com)"
+			opt :config, "YAML config file containing array of urls", :type => :string
+		end
+
         if ARGV.empty?
-            data_file_name = 'sites.yaml' 
+            data_file_name = opts[:config] || 'sites.yaml'
             YAML.load_file(data_file_name)
         else
             ARGV.clone
