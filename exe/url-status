@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+require 'url_status'
+UrlStatus::App.new.main
