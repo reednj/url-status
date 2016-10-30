@@ -31,8 +31,13 @@ class App
 		end
 
         if ARGV.empty?
-            data_file_name = opts[:config] || 'sites.yaml'
-            YAML.load_file(data_file_name)
+            begin
+                data_file_name = opts[:config] || "#{ENV['HOME']}/sites.yaml"
+                YAML.load_file(data_file_name)
+            rescue => e
+                puts "Could not open '#{data_file_name}' (#{e})"
+                exit(false)
+            end
         else
             ARGV.clone
         end
