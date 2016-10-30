@@ -7,4 +7,4 @@ end
 ruby '>1.9.2'
 gem 'rest-client', '~>1.8'
 gem 'colorize'
-gem 'yaml'
+gem 'trollop'

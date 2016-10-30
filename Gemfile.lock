@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    colorize (0.8.1)
     domain_name (0.5.20161021)
       unf (>= 0.0.5, < 1.0.0)
     http-cookie (1.0.3)
@@ -14,6 +15,7 @@ GEM
       netrc (~> 0.7)
     test-unit (3.2.1)
       power_assert
+    trollop (2.1.2)
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
@@ -22,8 +24,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  colorize
   rest-client (~> 1.8)
   test-unit
+  trollop
 
 RUBY VERSION
    ruby 2.2.2p95
