@@ -1,3 +1,3 @@
 module UrlStatus
-  VERSION = "0.1.2"
+  VERSION = "1.0.2"
 end
