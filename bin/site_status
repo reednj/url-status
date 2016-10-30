@@ -3,4 +3,4 @@
 DIR="$(dirname "$(readlink "$0")")"
 cd $DIR/..
 
-/usr/bin/env ruby app.rb
+/usr/bin/env ruby app.rb "$@"

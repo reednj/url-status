@@ -9,8 +9,7 @@ require 'yaml'
 
 class App
     def main
-        data_file_name = 'sites.yaml' 
-        YAML.load_file(data_file_name).each do |url|
+        url_list.each do |url|
             begin
                 response = get_response(url)
                 code = response.ok? ? response.code.to_s.green : response.code.to_s.red
@@ -22,6 +21,16 @@ class App
                 puts "[#{"---".red}] #{url} (#{e.to_s.red})"
             end
         end
+    end
+
+    def url_list
+        if ARGV.empty?
+            data_file_name = 'sites.yaml' 
+            YAML.load_file(data_file_name)
+        else
+            ARGV.clone
+        end
+
     end
 
     def get_response(url)
