@@ -4,7 +4,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'url_status/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "url_status"
+  spec.name          = "url-status"
   spec.version       = UrlStatus::VERSION
   spec.authors       = ["Nathan Reed"]
   spec.email         = ["reednj@gmail.com"]
