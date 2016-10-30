@@ -4,13 +4,13 @@ require 'colorize'
 require 'yaml'
 require 'trollop'
 
-module UrlStatus
-
-	class RestClient::Response
-		def ok?
-			code == 200
-		end
+module RestClient::Response
+	def ok?
+		code == 200
 	end
+end
+
+module UrlStatus
 
 	class App
 		def main
