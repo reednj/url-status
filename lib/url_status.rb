@@ -54,6 +54,7 @@ module UrlStatus
 			begin
 				return RestClient.get(url)
 			rescue RestClient::ExceptionWithResponse => e
+				raise e if e.response.nil?
 				return e.response
 			end
 		end
