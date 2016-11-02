@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    url-status (1.0.2)
+    url-status (1.0.5)
       colorize
       rest-client (~> 1.8)
       trollop
