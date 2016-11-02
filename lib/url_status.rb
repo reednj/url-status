@@ -14,20 +14,29 @@ module UrlStatus
 
 	class App
 		def main
+			success = true
+
 			url_list.each do |url|
 				begin
 					response = get_response(url)
+					success = success && response.ok?
 					code = response.ok? ? response.code.to_s.green : response.code.to_s.red
 					final_url = response.request.url
+					
 					text = "[#{code}] #{final_url}"
 					text += " (requested #{url})".yellow unless final_url.include?(url)
-					puts text
+					puts text					
 				rescue StandardError => e
+					success = false
 					puts "[#{"---".red}] #{url} (#{e.to_s.red})"
 				end
 
 				STDOUT.flush
 			end
+
+			# unless *every* request completed properly, return an error code
+			#, then we can do something else, like send an email
+			exit(false) unless success
 		end
 
 		def url_list
