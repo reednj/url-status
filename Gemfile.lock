@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    url_status (0.1.0)
+    url-status (1.0.2)
       colorize
       rest-client (~> 1.8)
       trollop
@@ -32,7 +32,7 @@ PLATFORMS
 DEPENDENCIES
   bundler (~> 1.12)
   rake (~> 10.0)
-  url_status!
+  url-status!
 
 BUNDLED WITH
    1.12.5

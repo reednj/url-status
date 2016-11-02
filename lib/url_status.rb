@@ -25,6 +25,8 @@ module UrlStatus
 				rescue StandardError => e
 					puts "[#{"---".red}] #{url} (#{e.to_s.red})"
 				end
+
+				STDOUT.flush
 			end
 		end
 
