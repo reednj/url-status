@@ -14,15 +14,19 @@ module UrlStatus
 
 	class App
 		def main
-			success = true
+			# we want to disable the text coloring if we are printing to a
+			# file, or on a platform (like windows) that likely doesn't support
+			# the colors
+			String.disable_colorization = !$stdout.isatty
 
+			success = true
 			url_list.each do |url|
 				begin
 					response = get_response(url)
 					success = success && response.ok?
 					code = response.ok? ? response.code.to_s.green : response.code.to_s.red
 					final_url = response.request.url
-					
+
 					text = "[#{code}] #{final_url}"
 					text += " (requested #{url})".yellow unless final_url.include?(url)
 					puts text					
@@ -31,7 +35,7 @@ module UrlStatus
 					puts "[#{"---".red}] #{url} (#{e.to_s.red})"
 				end
 
-				STDOUT.flush
+				$stdout.flush
 			end
 
 			# unless *every* request completed properly, return an error code
