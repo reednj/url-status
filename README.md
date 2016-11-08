@@ -1,39 +1,35 @@
-# UrlStatus
+# url-status
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/url_status`. To experiment with that code, run `bin/console` for an interactive prompt.
+`url-status` is a gem to check the http status of a list of urls. 
 
-TODO: Delete this and the text above, and describe your gem
+![check a list of urls](./url-status.png)
+
+The urls can be provided as command line options, or they can come from a config file.
+
+    # list of urls to check simply given as command line options
+    # if no protocol is given, http is assumed
+    url-status google.com https://facebook.com
+
+    # pull the urls from the config file instead
+    url-status --config ./site-list.yaml
+
+The YAML file should be a simple array of the urls to check:
+
+    ---
+    - ssrs.reednj.com
+    - paint.reednj.com
+    - popacular.com/home
+    - gigatweeter.com
+
+If any of the urls fail, then the gem will return a status code of 1, allowing other action to be taken.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'url_status'
-```
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install url_status
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake true` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+    $ gem install url-status
 
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/url_status.
-
 
 ## License
 
