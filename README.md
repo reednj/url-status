@@ -27,10 +27,6 @@ If any of the urls fail, then the gem will return a status code of 1, allowing o
 
     $ gem install url-status
 
-## Contributing
-
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/url_status.
-
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
