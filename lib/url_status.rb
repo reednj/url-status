@@ -75,10 +75,11 @@ module UrlStatus
 		end
 
 		def get_response(url)
+			user_agent = "url-status/#{UrlStatus::VERSION}"
 			url = 'http://' + url unless url.start_with? 'http'
 
 			begin
-				return RestClient.get(url)
+				return RestClient.get(url, :user_agent => user_agent)
 			rescue RestClient::ExceptionWithResponse => e
 				raise e if e.response.nil?
 				return e.response
