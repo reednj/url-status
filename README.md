@@ -25,7 +25,7 @@ If any of the urls fail, then the gem will return a status code of 1, allowing o
 
 ## Installation
 
-    $ gem install --user-install url-status
+    $ gem install url-status
 
 ## License
 
