@@ -47,7 +47,7 @@ module UrlStatus
 		def url_list
 			opts = Trollop::options do
 				version "url-status #{UrlStatus::VERSION} (c) 2016 @reednj (reednj@gmail.com)"
-				banner "Usage: #{$0} [options] [urls...]"
+				banner "Usage: url-status [options] [urls...]"
 				opt :config, "YAML config file containing array of urls", :type => :string
 			end
 
