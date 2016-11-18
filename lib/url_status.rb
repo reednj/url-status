@@ -14,6 +14,7 @@ module UrlStatus
 
 	class App
 		def main
+
 			# we want to disable the text coloring if we are printing to a
 			# file, or on a platform (like windows) that likely doesn't support
 			# the colors
@@ -46,12 +47,18 @@ module UrlStatus
 		def url_list
 			opts = Trollop::options do
 				version "url-status #{UrlStatus::VERSION} (c) 2016 @reednj (reednj@gmail.com)"
+				banner "Usage: #{$0} [options] [urls...]"
 				opt :config, "YAML config file containing array of urls", :type => :string
 			end
 
 			if ARGV.empty?
+				
+				if opts[:config].nil? && !File.exist?(default_config_file)
+					Trollop::educate
+				end
+
 				begin
-					data_file_name = opts[:config] || "#{ENV['HOME']}/sites.yaml"
+					data_file_name = opts[:config] || default_config_file
 					YAML.load_file(data_file_name)
 				rescue => e
 					puts "Could not open '#{data_file_name}' (#{e})"
@@ -61,6 +68,10 @@ module UrlStatus
 				ARGV.clone
 			end
 
+		end
+
+		def default_config_file
+			"#{ENV['HOME']}/sites.yaml"
 		end
 
 		def get_response(url)
